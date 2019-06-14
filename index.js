@@ -49,6 +49,37 @@ app.delete('/api/persons/:id', (req, res) => {
   res.status(204).end()
 })
 
+app.post('/api/persons', (req, res) => {
+  const body = req.body
+
+  if (!body.name) {
+    return res.status(400).json({
+      error: 'name missing'
+    })
+  }
+  if (!body.number) {
+    return res.status(400).json({
+      error: 'number missing'
+    })
+  }
+  if (persons.findIndex(person => person.name == body.name) >= 0) {
+    return res.status(400).json({
+      error: 'name must be unique'
+    })
+  }
+
+  const person = {
+    name: body.name,
+    number: body.number,
+    id: Math.floor(Math.random() * 10000)
+  }
+
+  persons = persons.concat(person)
+
+  res.json(person)
+})
+
+
 app.get('/info', (req, res) => {
   res.send(`<p>Phonebook has info for ${persons.length} people</p>
             <p>${new Date()}`)
