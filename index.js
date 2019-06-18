@@ -2,12 +2,12 @@ console.log("about to require dotenv")
 require('dotenv').config()
 console.log("finished requiring dotenv")
 console.log(process.env)
-// const express = require('express')
-// const app = express()
-// const bodyParser = require('body-parser')
-// const morgan = require('morgan')
-// const cors = require('cors')
-// const Person = require('./models/person')
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const cors = require('cors')
+const Person = require('./models/person')
 
 
 // morgan.token('body', (req) => {
