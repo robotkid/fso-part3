@@ -8,8 +8,8 @@ const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
 
-mongoose.connect(url, {useNewUrlParser: true})
-  .then(result => {
+mongoose.connect(url, { useNewUrlParser: true })
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch(error => {
@@ -17,16 +17,18 @@ mongoose.connect(url, {useNewUrlParser: true})
   })
 
 const personSchema = new mongoose.Schema({
-  name: { type: String,
-          required: true,
-          unique: true,
-          minlength: 3
-        },
-  number: { type: String,
-            required: true,
-            unique: false,
-            match: /(\D*\d\D*){8}/
-          }
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+    minlength: 3
+  },
+  number: {
+    type: String,
+    required: true,
+    unique: false,
+    match: /(\D*\d\D*){8}/
+  }
 })
 
 personSchema.set('toJSON', {
